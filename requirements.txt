@@ -1,0 +1,15 @@
+# Update requirements dengan textdistance
+fastapi==0.111.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+pillow==10.3.0
+google-cloud-vision==3.7.2
+pandas==2.2.2
+numpy==1.26.4
+python-dotenv==1.0.1
+pydantic==2.7.1
+aiofiles==24.1.0
+paddlepaddle==2.6.1
+paddleocr==2.7.3
+opencv-python==4.6.0.66
+textdistance==4.6.2
