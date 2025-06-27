@@ -26,5 +26,6 @@ build:
     - docker push $CI_REGISTRY_IMAGE/$IMAGE_NAME:latest
   only:
     - master
+    - main
   tags:
     - docker
