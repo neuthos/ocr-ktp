@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  ktp-ocr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ktp-ocr-api
+    ports:
+      - "8000:8000"
+    environment:
+      - GOOGLE_CLOUD_CREDENTIALS_PATH=config/gcp-credentials.json
+      - TEMP_DIR=temp/
+      - MAX_FILE_SIZE=10485760
+      - ALLOWED_EXTENSIONS=jpg,jpeg,png
+      - CDN_BASE_URL=https://official.aigent.id
+    volumes:
+      - ./config:/app/config:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - ocr-network
+
+networks:
+  ocr-network:
+    driver: bridge
